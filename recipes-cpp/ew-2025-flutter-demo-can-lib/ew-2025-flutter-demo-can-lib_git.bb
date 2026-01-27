@@ -6,7 +6,7 @@ SECTION = "libs"
 DEPENDS += "protobuf boost jsoncpp libsocketcan protobuf-native"
 
 SRCREV = "${AUTOREV}"
-SRC_URI = "git://github.com/amarula/ew_2025_flutter_demo.git;branch=main;protocol=https;destsuffix=git"
+SRC_URI = "git://github.com/amarula/ew_flutter_demo.git;branch=v2025;protocol=https;destsuffix=git"
 
 S = "${WORKDIR}/git/${PN}"
 
