@@ -8,7 +8,7 @@ RDEPENDS:${PN} += "ew-2025-flutter-demo-can-lib"
 
 SRCREV = "${AUTOREV}"
 SRC_URI = " \
-    git://github.com/amarula/ew_2025_flutter_demo.git;branch=main;protocol=https;destsuffix=git \
+    git://github.com/amarula/ew_flutter_demo.git;branch=v2025;protocol=https;destsuffix=git \
     file://ew-2025-flutter-demo \
     file://ew-2025-flutter-demo.service \
     "
