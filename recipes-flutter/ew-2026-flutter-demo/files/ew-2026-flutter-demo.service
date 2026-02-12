@@ -1,6 +1,7 @@
 [Unit]
 Description=Flutter application demo
-After=weston-graphical-session.service
+Wants=connman.service
+After=weston-graphical-session.service connman.service
 
 [Service]
 Restart=on-failure
