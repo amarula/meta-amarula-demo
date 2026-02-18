@@ -12,3 +12,10 @@ inherit cmake
 
 OECMAKE_SOURCEPATH = "${S}/libsensors_ffi"
 EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON"
+
+do_install:append() {
+    install -d ${D}${sysconfdir}
+    install -m 0644 ${S}/libsensors_ffi/sensors.cfg ${D}${sysconfdir}/sensors.cfg
+}
+
+FILES:${PN} += "${sysconfdir}/sensors.cfg"
