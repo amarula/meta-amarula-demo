@@ -10,7 +10,7 @@ S = "${WORKDIR}/git"
 
 inherit cmake pkgconfig
 
-DEPENDS += "libcppconnman"
+DEPENDS += "libcppconnman libcppdebounce"
 
 OECMAKE_SOURCEPATH = "${S}/libcppconnman_adapter"
 EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON"
