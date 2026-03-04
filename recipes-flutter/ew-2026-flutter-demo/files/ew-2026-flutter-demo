@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+amixer sset 'Headphone' 100%
+amixer sset 'PCM' 95%
 connmanctl enable wifi
 
 sleep 1
