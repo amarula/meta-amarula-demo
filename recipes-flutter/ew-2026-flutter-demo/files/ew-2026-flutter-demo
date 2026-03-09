@@ -4,7 +4,35 @@ amixer sset 'Headphone' 100%
 amixer sset 'PCM' 95%
 connmanctl enable wifi
 
+echo 75 > "/sys/bus/iio/devices/iio:device0/sampling_frequency"
 sleep 1
+
+# Define the target directory and files
+HWMON_DIR="/sys/class/hwmon/hwmon0"
+NAME_FILE="$HWMON_DIR/name"
+
+# Check if the name file exists
+if [ -f "$NAME_FILE" ]; then
+    # Read the sensor name
+    SENSOR_NAME=$(cat "$NAME_FILE")
+
+    # Check if the sensor is sht4x
+    if [ "$SENSOR_NAME" = "sht4x" ]; then
+        echo "sht4x sensor detected in hwmon0."
+
+        # Create symbolic links in /dev (-s for symbolic, -f to force)
+        ln -sf "$HWMON_DIR/humidity1_input" /dev/humidity1_input
+        ln -sf "$HWMON_DIR/temp1_input" /dev/temp1_input
+
+        echo "Symlinks successfully created:"
+   else
+       ln -sf "/sys/class/hwmon/hwmon1/humidity1_input" /dev/humidity1_input
+       ln -sf "/sys/class/hwmon/hwmon1/temp1_input" /dev/temp1_input
+   fi
+else
+   ln -sf "/sys/class/hwmon/hwmon1/humidity1_input" /dev/humidity1_input
+   ln -sf "/sys/class/hwmon/hwmon1/temp1_input" /dev/temp1_input
+fi
 
 export XDG_RUNTIME_DIR=/run/user/1000
 export WAYLAND_DISPLAY=wayland-0
